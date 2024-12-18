@@ -8,8 +8,6 @@ public class FlowConnectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FlowConnectApplication.class, args);
-		
-		//teste
 	}
 
 }

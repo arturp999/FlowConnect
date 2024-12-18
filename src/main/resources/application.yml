@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1401;databaseName=flow_connect;encrypt=true;trustServerCertificate=true;
+    username: sa
+    password: P@ssw0rd
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    platform: sqlserver
+  jpa:
+    hibernate:
+      ddl-auto: none # Set to 'none' to ensure Liquibase manages schema
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-master.yaml
+    database-change-log-table: DATABASECHANGELOG_LIQUIBASE

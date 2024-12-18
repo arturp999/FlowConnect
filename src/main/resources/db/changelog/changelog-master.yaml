@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: arturpereira
+      changes:
+        - sql:
+            dbms: sqlserver
+            sql: |
+              IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'flow_connect')
+              BEGIN
+                  CREATE DATABASE flow_connect COLLATE SQL_Latin1_General_CP1_CI_AS
+              END
+
+  - includeAll:
+      path: db/2024

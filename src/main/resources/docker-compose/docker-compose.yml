@@ -1,0 +1,48 @@
+networks:
+  my-current-network:  # will probably change in the future, this is a bridge network by default.
+
+volumes:
+  database-data:
+  database-log:
+  database-secrets:
+  keycloak-data:
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    hostname: db
+    volumes:
+      - database-data:/var/opt/mssql/data
+      - database-log:/var/opt/mssql/log
+      - database-secrets:/var/opt/mssql/secrets
+    networks:
+      - my-current-network
+    restart: "no"
+    container_name: sql-server
+    ports:
+      - "1401:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssw0rd
+    user: "root"
+
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:26.0.7
+    networks:
+      - my-current-network
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import
+      - keycloak-data:/var/lib/keycloak/data
+    environment:
+      - KC_DB=mssql
+      - KC_DB_USERNAME=sa
+      - KC_DB_PASSWORD=P@ssw0rd
+      - KC_DB_URL=jdbc:sqlserver://db:1433;databaseName=keycloak;encrypt=false;trustServerCertificate=true;
+      - KC_DB_SCHEMA=dbo
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_TRANSACTION_XA_ENABLED=false
+    command: start-dev --import-realm
+    ports:
+      - "8199:8080"

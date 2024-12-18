@@ -6,9 +6,16 @@ databaseChangeLog:
         - sql:
             dbms: sqlserver
             sql: |
-              IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'flow_connect')
+              IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'flow_connect') 
               BEGIN
                   CREATE DATABASE flow_connect COLLATE SQL_Latin1_General_CP1_CI_AS
+              END
+        - sql:
+            dbms: sqlserver
+            sql: |
+              IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'keycloak') 
+              BEGIN
+                  CREATE DATABASE keycloak COLLATE SQL_Latin1_General_CP1_CI_AS
               END
 
   - includeAll:

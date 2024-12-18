@@ -83,6 +83,21 @@
 	        <artifactId>springdoc-openapi-ui</artifactId>
 	        <version>1.8.0</version>  <!-- Correct version -->
 	    </dependency>
+	    
+	    <!-- KeyCloak Stuff-->
+		<dependency>
+		    <groupId>org.keycloak</groupId>
+		    <artifactId>keycloak-core</artifactId>
+		    <version>26.0.7</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.keycloak</groupId>
+		    <artifactId>keycloak-admin-client</artifactId>
+		    <version>26.0.3</version>
+		</dependency>
+		
+		
 		</dependencies>
 
 	<build>

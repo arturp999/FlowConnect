@@ -11,12 +11,12 @@ spring:
       roles: USER
 
   datasource:
-    flow_connect:
+    flow-connect:
       url: jdbc:sqlserver://localhost:1401;databaseName=flow_connect;encrypt=true;trustServerCertificate=true;
       username: sa
       password: P@ssw0rd
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    communication_hub:
+    communication-hub:
       url: jdbc:sqlserver://localhost:1401;databaseName=communication_hub;encrypt=true;trustServerCertificate=true;
       username: sa
       password: P@ssw0rd
@@ -29,11 +29,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.SQLServerDialect
-
-  liquibase:
-    enabled: true
-    change-log: classpath:db/changelog/changelog-master.yaml
-    database-change-log-table: DATABASECHANGELOG_LIQUIBASE
 
   springdoc:
     api-docs:

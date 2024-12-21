@@ -5,7 +5,7 @@
 -- Date: 2024-12-21 12:56
 
 -- Create the mailing_templates table if it does not already exist
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name = 'mailing_templates' AND type = 'U')
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'mailing_templates')
 BEGIN
     CREATE TABLE mailing_templates (
         template_code VARCHAR(50) PRIMARY KEY,     -- Unique code for the template
@@ -21,7 +21,7 @@ BEGIN
 END
 
 -- Create the template_placeholders table if it does not already exist
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name = 'template_placeholders' AND type = 'U')
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'template_placeholders')
 BEGIN
     CREATE TABLE template_placeholders (
         placeholder_id BIGINT IDENTITY(1,1) PRIMARY KEY, -- Unique ID for the placeholder
@@ -34,4 +34,6 @@ BEGIN
         update_user VARCHAR(255) NOT NULL,                -- Last updater's username or ID
         FOREIGN KEY (template_code) REFERENCES mailing_templates(template_code)  -- FK to the templates
     );
+
+    CREATE INDEX idx_template_code ON template_placeholders(template_code);
 END

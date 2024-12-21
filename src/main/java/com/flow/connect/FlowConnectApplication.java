@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableConfigurationProperties
-@ComponentScan(basePackages = "com.flow.connect") 
+@ComponentScan(basePackages = "com.flow") 
 public class FlowConnectApplication {
 
 	public static void main(String[] args) {

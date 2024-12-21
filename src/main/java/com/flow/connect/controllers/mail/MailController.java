@@ -34,7 +34,7 @@ public class MailController {
 	    @Parameter(description = "Template name to use for the email body") @RequestParam String template,
 	    @Parameter(description = "CC recipients (optional)") @RequestParam(required = false) String cc) {
 	try {
-	    mailService.sendMail(configurationKey, to, subject, body, cc);
+	    mailService.sendMail(configurationKey, to, subject, body, cc, template);
 	    return ResponseEntity.ok("Email sent successfully.");
 	} catch (Exception e) {
 	    return ResponseEntity.status(500).body("Failed to send email: " + e.getMessage());

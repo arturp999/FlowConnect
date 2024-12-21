@@ -11,11 +11,16 @@ spring:
       roles: USER
 
   datasource:
-    url: jdbc:sqlserver://localhost:1401;databaseName=flow_connect;encrypt=true;trustServerCertificate=true;
-    username: sa
-    password: P@ssw0rd
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    platform: sqlserver
+    flow_connect:
+      url: jdbc:sqlserver://localhost:1401;databaseName=flow_connect;encrypt=true;trustServerCertificate=true;
+      username: sa
+      password: P@ssw0rd
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    communication_hub:
+      url: jdbc:sqlserver://localhost:1401;databaseName=communication_hub;encrypt=true;trustServerCertificate=true;
+      username: sa
+      password: P@ssw0rd
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
   jpa:
     hibernate:
@@ -41,4 +46,18 @@ spring:
     default:
       host: smtp.gmail.com
       port: 587
-      username:
+      username: your-gmail@gmail.com
+      password: your-gmail-password
+      properties:
+        mail.smtp.auth: true
+        mail.smtp.starttls.enable: true
+        mail.smtp.starttls.required: true
+    alternate:
+      host: smtp.sendgrid.net
+      port: 587
+      username: your-sendgrid-user
+      password: your-sendgrid-password
+      properties:
+        mail.smtp.auth: true
+        mail.smtp.starttls.enable: true
+        mail.smtp.starttls.required: true

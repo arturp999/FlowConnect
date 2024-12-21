@@ -53,7 +53,7 @@ public class MailService {
 	return mailSender;
     }
 
-    public void sendMail(String configurationKey, String to, String subject, String body, String cc) {
+    public void sendMail(String configurationKey, String to, String subject, String body, String cc, String template) {
 	logger.info("Sending email to: {}, subject: {}, CC: {}", to, subject, cc);
 
 	try {
